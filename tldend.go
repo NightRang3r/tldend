@@ -24,8 +24,8 @@ func main() {
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		if strings.HasSuffix(scanner.Text(), domain) {
-			fmt.Println(scanner.Text())
+		if strings.HasSuffix(strings.ToLower(scanner.Text()), domain) {
+			fmt.Println(strings.ToLower(scanner.Text()))
 		}
 
 	}
