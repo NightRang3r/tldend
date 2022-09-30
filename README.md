@@ -1,5 +1,5 @@
 # tldend
-Pipe subdomains via stdin,  check and print to stdout only subdomains that are  matching a specified tld domain
+Pipe subdomains via stdin and print to stdout only subdomains that are matching a specified tld domain
 
 ## Install
 
