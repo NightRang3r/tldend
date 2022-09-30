@@ -11,4 +11,4 @@ Pipe subdomains via stdin and print to stdout only subdomains that are matching 
 
 ## Usage
 
-```cat starbucks_subdomains.txt | tldend -d starbucks.com```
+```cat subdomains.txt | tldend -d starbucks.com```
