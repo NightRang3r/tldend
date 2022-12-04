@@ -11,16 +11,16 @@ import (
 
 func main() {
 
-	var tldDomain string
-	flag.StringVar(&tldDomain, "d", "", "top level domain")
+	var parentDomain string
+	flag.StringVar(&parentDomain, "d", "", "The parent domain to match against")
 	flag.Parse()
 
-	tldDomain = strings.ToLower(tldDomain)
+	parentDomain = strings.ToLower(parentDomain)
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		subdomain := scanner.Text()
-		if strings.HasSuffix(strings.ToLower(subdomain), "."+tldDomain) || subdomain == tldDomain {
+		if strings.HasSuffix(strings.ToLower(subdomain), "."+parentDomain) || subdomain == parentDomain {
 			fmt.Println(strings.ToLower(subdomain))
 		}
 
