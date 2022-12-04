@@ -11,21 +11,17 @@ import (
 
 func main() {
 
-	var tldDomain bool
-	flag.BoolVar(&tldDomain, "d", false, "top level domain")
+	var tldDomain string
+	flag.StringVar(&tldDomain, "d", "", "top level domain")
 	flag.Parse()
 
-	domain := flag.Arg(0)
-	if domain == "" {
-		fmt.Println("Please specify top level domain to match")
-		return
-	}
-	domain = strings.ToLower(domain)
+	tldDomain = strings.ToLower(tldDomain)
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		if strings.HasSuffix(strings.ToLower(scanner.Text()), "."+domain) || scanner.Text() == domain {
-			fmt.Println(strings.ToLower(scanner.Text()))
+		subdomain := scanner.Text()
+		if strings.HasSuffix(strings.ToLower(subdomain), "."+tldDomain) || subdomain == tldDomain {
+			fmt.Println(strings.ToLower(subdomain))
 		}
 
 	}
