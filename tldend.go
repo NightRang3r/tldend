@@ -4,30 +4,28 @@ import (
 	"bufio"
 	"flag"
 	"fmt"
-	"log"
 	"os"
 	"strings"
 )
 
 func main() {
-
+	// Parse the -d flag to get the parent domain
 	var parentDomain string
 	flag.StringVar(&parentDomain, "d", "", "The parent domain to match against")
 	flag.Parse()
 
-	parentDomain = strings.ToLower(parentDomain)
+	// If the parent domain is not supplied with the -d flag, print an error message and exit
+	if parentDomain == "" {
+		fmt.Println("Error: -d flag is required to specify the parent domain")
+		return
+	}
 
+	// Read subdomains from standard input
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		subdomain := scanner.Text()
-		if strings.HasSuffix(strings.ToLower(subdomain), "."+parentDomain) || subdomain == parentDomain {
-			fmt.Println(strings.ToLower(subdomain))
+		subdomain := strings.ToLower(scanner.Text())
+		if subdomain == parentDomain || strings.HasSuffix(subdomain, "."+parentDomain) {
+			fmt.Println(subdomain)
 		}
-
 	}
-
-	if err := scanner.Err(); err != nil {
-		log.Println(err)
-	}
-
 }
